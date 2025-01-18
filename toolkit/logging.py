@@ -69,7 +69,8 @@ class WandbLogger(EmptyLogger):
     ):
         # create a wandb image object and log it
         image = self._image(image, caption=caption, *args, **kwargs)
-        self._log({f"sample_{id}": image}, commit=False)
+        imgid=self.config["logging"]["image_prefix"] + "_" + str(id)
+        self._log({imgid: image}, commit=False)
 
     def finish(self):
         self.run.finish()
