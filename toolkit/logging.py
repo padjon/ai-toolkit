@@ -44,7 +44,7 @@ class WandbLogger(EmptyLogger):
             raise ImportError("Failed to import wandb. Please install wandb by running `pip install wandb`")
         
         # send the whole config to wandb
-        run = wandb.init(project=self.project, name=self.run_name, config=self.config)
+        run = wandb.init(project=self.project, name=self.run_name, config=self.config, id=self.config["logging"]["image_prefix"], resume="allow")
         self.run = run
         self._log = wandb.log # log function
         self._image = wandb.Image # image object
